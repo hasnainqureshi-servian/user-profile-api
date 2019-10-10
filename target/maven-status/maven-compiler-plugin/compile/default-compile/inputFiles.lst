@@ -1,0 +1,14 @@
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/api/UserProfileApi.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/api/NotFoundException.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/api/ApiOriginFilter.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/api/ApiException.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/model/ModelApiResponse.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/configuration/HomeController.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/configuration/CustomInstantDeserializer.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/configuration/JacksonConfiguration.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/api/ApiResponseMessage.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/RFC3339DateFormat.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/Swagger2SpringBoot.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/model/UserProfile.java
+/Users/hasnainqureshi/Downloads/spring-server/src/main/java/io/swagger/api/UserProfileApiController.java
