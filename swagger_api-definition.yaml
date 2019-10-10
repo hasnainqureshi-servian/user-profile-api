@@ -1,0 +1,226 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server user profile server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "User Profile"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "userprofile.swagger.io"
+basePath: "/"
+tags:
+- name: "user profile"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "user"
+  description: "Operations about user"
+  externalDocs:
+    description: "Find out more about our store"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /user_profile:
+    post:
+      tags:
+      - "user profile"
+      summary: "Add a new user profile "
+      description: ""
+      operationId: "addUserProfile"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "user profile object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/user_profile"
+      responses:
+        405:
+          description: "Invalid input"
+      security:
+      - user_profile_auth:
+        - "write:user_profile"
+        - "read:user_profile"
+    put:
+      tags:
+      - "user profile"
+      summary: "Update an existing user profile"
+      description: ""
+      operationId: "updateUserProfile"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "user profile object that needs to be uploaded"
+        required: true
+        schema:
+          $ref: "#/definitions/user_profile"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "user profile not found"
+        405:
+          description: "Validation exception"
+      security:
+      - user_profile_auth:
+        - "write:user_profile"
+        - "read:user_profile"
+  /user_profile/{userProfileId}:
+    get:
+      tags:
+      - "user profile"
+      summary: "Find user profile by ID"
+      description: "Returns a single user profile"
+      operationId: "getUserProfileById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userProfileId"
+        in: "path"
+        description: "ID of profile to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/user_profile"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "user_profile not found"
+      security:
+      - api_key: []
+    post:
+      tags:
+      - "user profile"
+      summary: "Updates a user profile in the store with form data"
+      description: ""
+      operationId: "updateUserProfileWithForm"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "userProfileId"
+        in: "path"
+        description: "ID of user profile that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "name"
+        in: "formData"
+        description: "Updated name of the user profile"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "formData"
+        description: "Updated status of the user profile"
+        required: false
+        type: "string"
+      responses:
+        405:
+          description: "Invalid input"
+      security:
+      - user_profile_auth:
+        - "write:user_profile"
+        - "read:user_profile"
+    delete:
+      tags:
+      - "user profile"
+      summary: "Deletes a profile"
+      description: ""
+      operationId: "deleteUserProfile"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "userProfileId"
+        in: "path"
+        description: "User profile id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "user profile not found"
+      security:
+      - user_profile_auth:
+        - "write:user_profile"
+        - "read:user_profile"
+securityDefinitions:
+  user_profile_auth:
+    type: "oauth2"
+    authorizationUrl: "http://userprofle.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:user_profile: "modify user profile in your account"
+      read:user_profile: "read your user profile"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  user_profile:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      first_name:
+        type: "string"
+        example: "John"
+      last_name:
+        type: "string"
+        example: "Doe"
+      home_address:
+        type: "string"
+        example: "200 George st"
+      office_address:
+        type: "string"
+        example: "200 George st"
+      email:
+        type: "string"
+        example: "john.doe@xyz.com"
+    xml:
+      name: "user_profile"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
